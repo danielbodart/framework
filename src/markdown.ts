@@ -79,11 +79,8 @@ function getLiveSource(
   attributes: Record<string, string>,
   codeExtensions: CodeExtensions = {}
 ): string | undefined {
-  // Check custom extensions first (allows overriding built-ins)
-  if (codeExtensions[tag]) {
-    return codeExtensions[tag](content, attributes);
-  }
-  // Fall back to built-in transforms
+  const codeExtension = codeExtensions[tag];
+  if (codeExtension) return codeExtension(content, attributes);
   return tag === "js"
     ? content
     : tag === "ts" || tag === "jsx" || tag === "tsx"
