@@ -8,7 +8,7 @@ describe("codeExtensions", () => {
       root: "docs",
       codeExtensions: {
         uppercase: (content: string) => {
-          return `"${content.trim().toUpperCase()}"`;
+          return JSON.stringify(content.trim().toUpperCase());
         }
       }
     });
